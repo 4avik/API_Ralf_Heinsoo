@@ -1,6 +1,12 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head } from '@inertiajs/vue3';
+
+const props = defineProps({
+    data: Object
+})
+
+console.log(props.data)
 </script>
 
 <template>
@@ -8,13 +14,26 @@ import { Head } from '@inertiajs/vue3';
 
     <AuthenticatedLayout>
         <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Dashboard</h2>
+            <h2 class="font-semibold text-xl text-gray-800 leading-tight">Weather</h2>
         </template>
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                    <div class="p-6 text-gray-900">You're logged in!</div>
+                <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg mb-6">
+                    <div class="p-6 text-gray-900 flex gap-4 items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <h1 class="font-bold">{{ props.data.name }} </h1>
+                            <p>{{ props.data.weather[0].description }}</p>
+                            <img :src="`https://openweathermap.org/img/wn/${props.data.weather[0].icon}.png`" alt="">
+                            <p>{{ props.data.main.temp }}<sup>c</sup> (feels like: {{ props.data.main.feels_like }}<sup>c</sup>)</p>
+                            <p>Clouds: {{ props.data.clouds.all }}%</p>
+                            <p>Humidity: {{ props.data.main.humidity }}%</p>
+                        </div>
+                        <div>
+                            <p>Lon: {{ props.data.coord.lon }}<sup>o</sup></p>
+                            <p>Lat: {{ props.data.coord.lat }}<sup>o</sup></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

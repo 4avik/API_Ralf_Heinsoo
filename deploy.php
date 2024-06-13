@@ -4,18 +4,18 @@ namespace Deployer;
 require 'recipe/laravel.php';
 
 // Zone ühendus
-set('application', 'yl1');
-set('remote_user', 'virt106855');
-set('http_user', 'virt106855');
+set('application', 'ilmarakendus');
+set('remote_user', 'virt106854');
+set('http_user', 'virt106854');
 set('keep_releases', 2);
 
-host('tak21tanak.itmajakas.ee')
-    ->setHostname('tak21tanak.itmajakas.ee')
-    ->set('http_user', 'virt106855')
-    ->set('deploy_path', '~/domeenid/www.tak21tanak.itmajakas.ee/yl1')
+host('tak21aavik.itmajakas.ee')
+    ->setHostname('tak21aavik.itmajakas.ee')
+    ->set('http_user', 'virt106854')
+    ->set('deploy_path', '~/domeenid/www.tak21aavik.itmajakas.ee/ilmarakendus')
     ->set('branch', 'master');
 
-set('repository', 'git@github.com:tanakimees/yl1.git');
+set('repository', 'git@github.com:4avik/API_Ralf_Heinsoo.git');
 
 // tasks
 task('opcache:clear', function () {
